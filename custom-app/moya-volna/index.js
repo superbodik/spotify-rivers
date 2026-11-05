@@ -1,3 +1,5 @@
+let render;
+
 (function () {
   const react = Spicetify.React;
   const e = react.createElement;
@@ -208,9 +210,7 @@
     document.head.appendChild(styleTag);
   }
 
-  function render() {
+  render = function render() {
     return e(MoyaVolnaPage);
-  }
-
-  module.exports = render;
+  };
 })();
