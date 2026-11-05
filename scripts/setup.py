@@ -12,6 +12,8 @@ EXTENSION_SOURCE = ROOT / "extension" / "rivers.js"
 DIST_FILE = ROOT / "dist" / "rivers.js"
 MANIFEST_FILE = ROOT / "version.json"
 UPDATER_SOURCE = ROOT / "updater" / "spicetify_updater.py"
+CUSTOM_APP_NAME = "moya-volna"
+CUSTOM_APP_SOURCE = ROOT / "custom-app" / CUSTOM_APP_NAME
 
 PLACEHOLDER = "USER/REPO"
 SPICETIFY_INSTALL_URL = "https://raw.githubusercontent.com/spicetify/cli/main/install.ps1"
@@ -86,8 +88,18 @@ def enable_extension(spicetify_exe: str) -> None:
     print(f"скопировал rivers.js в {extensions_dir}")
 
     subprocess.run([spicetify_exe, "config", "extensions", "rivers.js"], check=True)
+
+    custom_apps_dir = Path(os.environ["LOCALAPPDATA"]) / "spicetify" / "CustomApps" / CUSTOM_APP_NAME
+    custom_apps_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(CUSTOM_APP_SOURCE / "manifest.json", custom_apps_dir / "manifest.json")
+    shutil.copyfile(CUSTOM_APP_SOURCE / "index.js", custom_apps_dir / "index.js")
+    print(f"скопировал custom app 'Моя волна' в {custom_apps_dir}")
+    subprocess.run([spicetify_exe, "config", "custom_apps", CUSTOM_APP_NAME], check=True)
+
+    subprocess.run([spicetify_exe, "config", "always_enable_devtools", "1"], check=True)
+
     subprocess.run([spicetify_exe, "apply"], check=True)
-    print("расширение подключено, spicetify apply выполнен")
+    print("расширение и custom app подключены, spicetify apply выполнен")
 
 
 def build_updater_exe() -> Path:
