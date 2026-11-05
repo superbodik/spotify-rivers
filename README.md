@@ -18,6 +18,17 @@
 
 ## Настройка
 
+Автоматически (делает всё из шагов ниже сразу):
+
+```
+pip install pyinstaller
+python scripts/setup.py --github-repo USER/REPO
+```
+
+Ставит Spicetify, если его ещё нет, подставляет `USER/REPO` в нужные файлы, копирует расширение в `%LOCALAPPDATA%\spicetify\Extensions` и включает его, собирает `spicetify_updater.exe`, создаёт задачу в Планировщике (запуск при входе в Windows, без прав администратора). Любой шаг можно пропустить флагом `--skip-install` / `--skip-apply` / `--skip-build` / `--skip-task`. На GitHub коммит/пуш скрипт не делает — это руками.
+
+Вручную, по тем же шагам:
+
 1. Поставь [Spicetify](https://spicetify.app/) и Python 3.
 2. Пропиши свой репозиторий вместо `USER/REPO`: в `extension/rivers.js` (`VERSION_MANIFEST_URL`), в `updater/spicetify_updater.py` (`MANIFEST_URL`), в `version.json` (`url`) — и закоммить/запушь.
 3. Подключи расширение:
@@ -25,7 +36,7 @@
    spicetify config extensions rivers.js
    spicetify apply
    ```
-   (сам файл `rivers.js` должен лежать в папке расширений Spicetify — обычно `%APPDATA%\spicetify\Extensions`).
+   (сам файл `rivers.js` должен лежать в папке расширений Spicetify — `%LOCALAPPDATA%\spicetify\Extensions`).
 4. Собери апдейтер в exe:
    ```
    pip install pyinstaller

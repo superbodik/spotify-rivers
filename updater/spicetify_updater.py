@@ -17,7 +17,7 @@ APP_DATA_DIR = Path(os.environ.get("LOCALAPPDATA", Path.home())) / "spicetify-up
 LOG_FILE = APP_DATA_DIR / "updater.log"
 STATE_FILE = APP_DATA_DIR / "state.json"
 
-EXTENSIONS_DIR = Path(os.environ.get("APPDATA", Path.home())) / "spicetify" / "Extensions"
+EXTENSIONS_DIR = Path(os.environ.get("LOCALAPPDATA", Path.home())) / "spicetify" / "Extensions"
 
 
 def setup_logging() -> None:
