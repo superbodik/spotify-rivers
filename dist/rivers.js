@@ -10,7 +10,7 @@
   }
 
   const CURRENT_VERSION = "1.0.0";
-  const VERSION_MANIFEST_URL = "https://raw.githubusercontent.com/USER/REPO/main/version.json";
+  const VERSION_MANIFEST_URL = "https://raw.githubusercontent.com/superbodik/spotify-rivers/main/version.json";
   const VERSION_CHECK_INTERVAL_MS = 4 * 60 * 60 * 1000;
   const LAST_CHECK_KEY = "rivers:lastVersionCheck";
   const NOTIFIED_VERSION_KEY = "rivers:notifiedVersion";

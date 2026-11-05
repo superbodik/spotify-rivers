@@ -9,7 +9,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-MANIFEST_URL = "https://raw.githubusercontent.com/USER/REPO/main/version.json"
+MANIFEST_URL = "https://raw.githubusercontent.com/superbodik/spotify-rivers/main/version.json"
 EXTENSION_FILENAME = "rivers.js"
 REQUEST_TIMEOUT_SECONDS = 15
 
